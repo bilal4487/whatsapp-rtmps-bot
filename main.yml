@@ -1,0 +1,32 @@
+name: WhatsApp RTMPS Bot
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+    - name: Install dependencies
+      run: npm install
+    - name: Install ffmpeg
+      run: sudo apt-get update && sudo apt-get install -y ffmpeg
+    - name: Run Bot
+      run: node index.js
+      env:
+        # You might need to set up environment variables for sensitive data
+        # like session data or API keys if you were using them.
+        # For whatsapp-web.js, the session is usually stored locally.
+        # This will likely require a persistent storage solution or manual QR scan.
+        # Consider using a self-hosted runner or a more advanced setup for production.
+        # For now, this step will likely hang waiting for QR code scan.
+        # A more robust solution would involve a headless browser setup with session persistence.
+        # For demonstration, we'll just run it, but it won't connect without manual intervention.
+        # This part needs further discussion with the user.
+        
+
